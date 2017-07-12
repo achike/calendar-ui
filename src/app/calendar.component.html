@@ -1,0 +1,23 @@
+
+<section [(ngModel)]="calendar">
+
+<form (ngSubmit)="saveCalendarDetails()" #calendarForm="ngForm">
+  
+  <div>
+    <label>Name: </label>
+    <input type="text" name="calendarName" [(ngModel)]="calendar.calendarName" #calendarName="ngModel">
+  </div>
+  
+  <div>
+    <label>Username: </label>
+    <input type="text" name="username" [(ngModel)]="calendar.username" #username="ngModel">  
+  </div>
+  
+  <div>
+    <label>External ID: </label>
+    <input type="text" name="externalId">
+  </div>
+
+  <button type="submit">Save</button>
+</form>
+</section>

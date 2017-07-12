@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 
 import { CalendarService } from './calendar.service';
 import { CalendarEvent } from './calendar-event';
@@ -13,9 +12,7 @@ export class CalendarEventComponent implements OnInit {
   calendarEvents: CalendarEvent[] = [];
   errorMessage: string = '';
 
-  constructor(private route: ActivatedRoute,
-              private calendarService: CalendarService,
-              private router: Router) { }
+  constructor(private calendarService: CalendarService) { }
 
   ngOnInit() {
       this.calendarService

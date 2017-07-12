@@ -6,12 +6,16 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import { Calendar } from './calendar';
 import { CalendarEvent } from './calendar-event';
+
+
 
 @Injectable()
 export class CalendarService {
 
-  private baseUrl: string = 'http://api.achike.net';
+  // TODO Remember to change this to http://api.achike.net
+  private baseUrl: string = 'http://localhost:5000';
 
   constructor(private http : Http){
   }
@@ -30,9 +34,24 @@ export class CalendarService {
     // will request text/html
     let headers = new Headers();
     headers.append('Accept', 'application/json');
+    
     return headers;
   }
 
+  saveCalendar(calendar: Calendar): Observable<Response> {
+      
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    
+    console.log('Calendar in Form -> ' + calendar);
+    
+    let calendarJson = JSON.stringify(calendar);
+    
+    console.log('Calendar in JSON Form -> ' + calendarJson);
+    
+    return this.http.post(this.baseUrl+'/calendar', calendarJson, options );
+  }
+  
 }
 
 function mapCalendarEvents(response:Response): CalendarEvent[]{
