@@ -1,16 +1,14 @@
 export interface CalendarEvent {
   
-  url: string;
-  
   id: number;
   title: string;
   location: string;
   
-  eventDate: Date;
-  eventTime: Date;
+  eventDate: string;
+  eventTime: string;
   
-  reminderTime: Date;
+  reminderTime?: Date;
   
-  reminderSent: boolean;
+  reminderSent?: boolean;
   
 }

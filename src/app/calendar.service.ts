@@ -15,7 +15,7 @@ import { CalendarEvent } from './calendar-event';
 export class CalendarService {
 
   // TODO Remember to change this to http://api.achike.net
-  private baseUrl: string = 'http://localhost:5000';
+  private baseUrl: string = 'http://api.achike.net';
 
   constructor(private http : Http){
   }
@@ -59,15 +59,20 @@ function mapCalendarEvents(response:Response): CalendarEvent[]{
 
   // The response of the API has a results
   // property with the actual results
-  return response.json().results.map(mapCalendarEvent)
+  console.log('Achike is HERE!!!');
+  return response.json().map(toCalendarEvent)
 }
 
 function toCalendarEvent(r:any): CalendarEvent{
+  console.log('Achike is HERE!!! 2');
+
+
   let calendarEvent = <CalendarEvent>({
-    url: r.url,
+    id: r.id,
     title: r.title,
-    eventDate: new Date(r.eventDate),
-    eventTime: new Date(r.eventTime),
+    location: r.location,
+    eventDate: "Now",
+    eventTime: "Now 2",
   });
   console.log('Parsed Calendar Event:', calendarEvent);
   return calendarEvent;
